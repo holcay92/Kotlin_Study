@@ -78,9 +78,9 @@ fun main() {
     // olarak verilebilir. Bunu yapmak icin sadece basina :: isareti koymak yeterlidir.
     val news = News()
     news.read(::println)
-    news.read({title ->
+    news.read { title ->
         print("asdsgf")
-    })
+    }
     news.read { title ->
         print(title)
     }
@@ -88,7 +88,6 @@ fun main() {
     news.read {
         print(it)
     }
-
 
     val titleFun = fun(title:String): Unit {
         print(title)
@@ -119,9 +118,9 @@ fun main() {
      *      yapmis oluruz.
      */
     val newsType = NewsType()
-    news.getNewsFromServer("FoxTv", newsType, {
+    news.getNewsFromServer("FoxTv", newsType) {
         println(this.toString())
-    }) // Higher Order Function, fonksiyon parametrelerinin icerisinde tanimlanmistir.
+    } // Higher Order Function, fonksiyon parametrelerinin icerisinde tanimlanmistir.
 
     news.getNewsFromServer("FoxTv", newsType) {
         println(this.toString())
@@ -139,7 +138,6 @@ fun main() {
         print("asdsgf")
     }
 }
-
 /* -------------------------------------------------------------------------------------------------------------------*/
 
 // Normal Fonksiyon
@@ -151,7 +149,6 @@ fun getName(): String {
 fun getAge(): Int = 29
 
 /* -------------------------------------------------------------------------------------------------------------------*/
-
 /**
  *      2. parametre Higher Order Fonksiyon olarak tanimlanmistir.
  *      Higher Order Fonksiyonlar default deger alabilirler. Bunun icin basitce suslu parantezler acmak yeterlidir.
@@ -242,7 +239,6 @@ infix fun News.filterNews(getFilter: (filterType: String, getFilterName: () -> S
         "String return label"
     }
 }
-
 fun News.read(readTitle: (title:String) -> Unit) {
     readTitle("Codemy is Awesome")
 }
